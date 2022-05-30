@@ -18,6 +18,7 @@ Product* FindProduct(Product* products, char* prod_name)
 {
     while(products != NULL)
     {
+        printf("%s, %s\n", products->name, prod_name);
         if(!strcmp(products->name, prod_name)){
             Product* finded = products;
             return finded;
@@ -69,9 +70,13 @@ Product* ProductInput(FILE* file)
     char* input_str = ConsoleInput(&dev, file);
     float prise;
     float weight;
-    int res = sscanf(input_str, "%f,%f", &prise, &weight);
-    if(res < 2 || prod_name[0] == '\0') printf("Wrong input format.\n");
+    int res = sscanf(input_str, "%f, %f", &prise, &weight);
+    if(res < 2 || prod_name[0] == '\0') {
+        printf("Wrong input format.\n");
+        return NULL;
+    }
     else {
+        printf("Correct\n");
         Product* product = CreateProduct(prod_name, prise, weight);
         //PrintProduct(product, stdout);
         return product;
@@ -125,15 +130,18 @@ Order* OrderInput(FILE* file)
     printf("For example: Matvey Nomow, 12, 14.05.2022\n");
     char dev = ',';
     customer = ConsoleInput(&dev, stdin);
-    int del_peroiod = 0;
-    fscanf(stdin, " %d", &del_peroiod);
+    int del_period = 0;
+    fscanf(stdin, " %d", &del_period);
     dev = '\n';
     char* date_str = ConsoleInput(&dev, stdin);
+    printf("%s", date_str);
     Date date = GetDate(date_str);
-    if(customer[0] != '\0' && date.day && del_peroiod > 0)
+    if(!del_period) return NULL;
+    if(customer[0] != '\0' && date.day && del_period > 0)
     {
-        Order* order = CreateOrder(customer, del_peroiod, date);
+        Order* order = CreateOrder(customer, del_period, date);
         //PrintOrder(order, stdout);
         return order;
-    }    
+    }
+    return NULL;    
 }

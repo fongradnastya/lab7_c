@@ -48,7 +48,7 @@ Date GetDate(char* str)
     int day;
     int mounth;
     int year;
-    int res = sscanf(str, "%d.%d.%d\n", &day, &mounth, &year);
+    int res = sscanf(str, ", %d.%d.%d\n", &day, &mounth, &year);
     if(res == 3)
     {
         if(day < 32 && mounth < 13 && year > 1900 && day > 0 && mounth > 0)

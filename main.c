@@ -102,8 +102,6 @@ Order* DeleteOrder(Order* orders)
     return orders;
 }
 
-
-
 enum ACTIONS
 {
     add_prod = 1,
@@ -190,13 +188,13 @@ int main()
             if(loc_cmd == prod)
             {
                 Product* new_product = ProductInput(input);
-                if(new_product->name)
+                if(new_product)
                     products = AddProduct(products, new_product);
             }
             else if(loc_cmd == order)
             {
                 Order* new_order = OrderInput(input);
-                if(new_order->customer_name){
+                if(new_order){
                     orders = AddOrder(orders, new_order);
                 }
             }

@@ -36,7 +36,8 @@ void PrintConnect(Connection* connect, FILE* file)
 
 Connection* CreateConnect(Order* order, Product* product)
 {
-    Connection* new_connect;
+
+    Connection* new_connect = (Connection*)malloc(sizeof(Connection));
     new_connect->order = order;
     new_connect->product = product;
     new_connect->next = NULL;
@@ -70,7 +71,7 @@ Connection* ConnectInput(Product* products, Order* orders, FILE* file)
 {
     printf("Please, enter order's id: ");
     int order_id;
-    int res = scanf("%d", &order_id);
+    int res = scanf("%d, ", &order_id);
     if(res)
     {
         Order* order = FindOrder(orders, order_id);
