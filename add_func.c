@@ -32,6 +32,7 @@ Order* FindOrder(Order* orders, int order_id)
 {
     while(orders != NULL)
     {
+        printf("id%d", orders->id);
         if(orders->id == order_id) {
             Order* finded = orders;
             return finded;

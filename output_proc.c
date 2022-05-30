@@ -36,13 +36,14 @@ void PrintMenu()
     printf("        ------MENU------\n");
     printf("1 to add new product\n");
     printf("2 to add new order\n");
-    printf("3 to delete a product\n");
-    printf("4 to delete an order\n");
-    printf("5 to add a product to the order\n");
-    //printf("6 to find the room with the number\n");
-    //printf("7 to write product to the file\n");
-    //printf("8 to invert a list\n");
-    //printf("9 to find quantity of product\n");
+    printf("3 to print products\n");
+    printf("4 to print orders\n");
+    printf("5 to delete a product\n");
+    printf("6 to delete an order\n");
+    printf("7 to add a product to the order\n");
+    printf("8 to file input\n");
+    printf("9 to load information into the file\n");
+    printf("10 to print products in the order\n");
     printf("-1 to exit\n");
     printf("-2 to print the menu\n");
     printf("        ----------------\n");
@@ -99,20 +100,25 @@ void ProdsInOrder(Connection* connect, FILE* file)
     printf("Please, enter order's id: ");
     int order_id;
     int res = scanf("%d", &order_id);
-    if(res)
-    {
-        Order* order = FindOrder(connect->order, order_id);
-        if(order) {
-            fprintf(file, "Order: #%d", order->id);
-            while(connect != NULL)
-            {
-                if(connect->order->id == order_id){
-                    fprintf(file, ", %s", connect->product->name);
-                }
-            }
-            fprintf(file, "\n"); 
-        }
+    setbuf(stdin, NULL);
+    int is_exist = 0;
+    if(!connect) {
+        printf("No connects.\n");
+        return NULL;
     }
+    else printf("----------------Connects---------------\n");
+    while(connect != NULL)
+    {
+        if(connect->order->id == order_id){
+            is_exist = 1;
+            printf("Order #%d: ", connect->order->id);
+            printf("%s\n", connect->product->name);
+        }
+        connect = connect->next;
+    }
+    fprintf(file, "\n"); 
+    if(!is_exist)printf("No maching orders\n");
+    printf("---------------------------------------\n");
 }
 
 void OrdsWithProd(Connection* connect, FILE* file)
@@ -120,15 +126,23 @@ void OrdsWithProd(Connection* connect, FILE* file)
     printf("Please, enter product's name: ");
     char end = '\n';
     char* name = ConsoleInput(&end, stdin);
-    Product* product = FindProduct(connect->product, name);
-    if(product){
-        fprintf(file, "Product %s:", product->name);
-        while(connect != NULL)
-        {
-            if(!strcmp(connect->product->name, name)){
-                fprintf(file, ", %d", connect->order->id);
-            }
-        }
-        fprintf(file, "\n"); 
+    setbuf(stdin, NULL);
+    int is_exist = 0;
+    if(!connect) {
+        printf("No connects.\n");
+        return NULL;
     }
+    else printf("----------------Connects---------------\n");
+    while(connect != NULL)
+    {
+        if(!strcmp(connect->product->name, name)){
+            is_exist = 1;
+            printf("Product %s: ", connect->product->name);
+            printf("#%d\n", connect->order->id);
+        }
+        connect = connect->next;
+    }
+    fprintf(file, "\n"); 
+    if(!is_exist)printf("No maching products\n");
+    printf("---------------------------------------\n");
 }

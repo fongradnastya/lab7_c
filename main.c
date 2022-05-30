@@ -113,6 +113,8 @@ enum ACTIONS
     connect = 7,
     file_inp = 8,
     file_outp = 9,
+    prods_in_ord,
+    ords_with,
     c_exit = -1,
     c_menu = -2
 }actions;
@@ -175,7 +177,7 @@ int main()
         else if(command == connect){
             Connection* new = ConnectInput(products, orders, stdin);
             PrintConnect(connects, stdout);
-            if(new)connects = AddConnection(connects, new);
+            if(new != NULL)connects = AddConnection(connects, new);
         }
         else if(command == file_inp){
             FILE* input = fopen("input.txt", "r");
@@ -206,6 +208,8 @@ int main()
             }
             fclose(input);
         }
+        else if(command == prods_in_ord)ProdsInOrder(connects, stdin);
+        else if(command == ords_with)OrdsWithProd(connects, stdin);
         else if(command == c_menu) PrintMenu();
         else printf("Wrong command.\n");
     }

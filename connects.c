@@ -45,6 +45,16 @@ Connection* CreateConnect(Order* order, Product* product)
     return new_connect;
 }
 
+Connection* PushBaskConnection(Connection* connects, Connection* new)
+{
+    if (connects == NULL)return NULL;
+    while (connects->next != NULL)
+        connects = connects->next;
+    new->next = connects->next;
+    connects->next = new;
+    return new;
+}
+
 Connection* AddConnection(Connection* list, Connection* new)
 {
     if(list == NULL){
@@ -57,12 +67,7 @@ Connection* AddConnection(Connection* list, Connection* new)
         //return list;
     //}
     else{
-        Connection* last = list;
-        while (last->next != NULL)
-            last = last->next;
-        new->next = last->next;
-        last->next = new;
-        printf("Wrong!\n");
+        PushBaskConnection(list, new);
         return list;
     }
 }
