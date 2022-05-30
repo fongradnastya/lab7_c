@@ -17,8 +17,12 @@ void PrintProducts(Product* products, FILE* file);
 
 void PrintOrders(Order* orders, FILE* file);
 
-void ProdsInOrder(Connection* connect, FILE* file);
+void ProdsInOrder(Connection* connect);
 
-void OrdsWithProd(Connection* connect, FILE* file);
+void OrdsWithProd(Connection* connect);
+
+void PrintConnects(Connection* connect, FILE* file);
+
+void SaveToTheFile(Product* prods, Order* orders, Connection* connects);
 
 #endif

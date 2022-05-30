@@ -24,16 +24,6 @@ int FindConnect(Connection* connects, Connection* new)
     return 0;
 }
 
-void PrintConnect(Connection* connect, FILE* file)
-{
-    while(connect != NULL){
-        int od_id = connect->order->id;
-        char* str = connect->product->name;
-        fprintf(file, "Connection: Order #%d - %s\n", od_id, str);
-        connect = connect->next;
-    }
-}
-
 Connection* CreateConnect(Order* order, Product* product)
 {
 
@@ -61,11 +51,6 @@ Connection* AddConnection(Connection* list, Connection* new)
         printf("New\n");
         return new;
     }
-    //else if(FindConnect(list, new))
-    //{
-        //printf("Elements are already connected.\n");
-        //return list;
-    //}
     else{
         PushBaskConnection(list, new);
         return list;

@@ -176,7 +176,7 @@ int main()
         else if(command == print_or) PrintOrders(orders, stdout);
         else if(command == connect){
             Connection* new = ConnectInput(products, orders, stdin);
-            PrintConnect(connects, stdout);
+            PrintConnects(connects, stdout);
             if(new != NULL)connects = AddConnection(connects, new);
         }
         else if(command == file_inp){
@@ -203,13 +203,14 @@ int main()
             else
             {
                 Connection* new = ConnectInput(products, orders, input);
-                PrintConnect(connects, stdout);
+                PrintConnects(connects, stdout);
                 if(new)connects = AddConnection(connects, new);
             }
             fclose(input);
         }
-        else if(command == prods_in_ord)ProdsInOrder(connects, stdin);
-        else if(command == ords_with)OrdsWithProd(connects, stdin);
+        else if(command == file_outp)SaveToTheFile(products, orders, connects);
+        else if(command == prods_in_ord)ProdsInOrder(connects);
+        else if(command == ords_with)OrdsWithProd(connects);
         else if(command == c_menu) PrintMenu();
         else printf("Wrong command.\n");
     }

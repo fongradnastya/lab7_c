@@ -11,6 +11,4 @@ Connection* AddConnection(Connection* list, Connection* new);
 
 Connection* ConnectInput(Product* products, Order* orders, FILE* file);
 
-void PrintConnect(Connection* connect, FILE* file);
-
 #endif

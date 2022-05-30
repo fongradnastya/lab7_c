@@ -67,7 +67,7 @@ void PrintOrder(Order* order, FILE* file)
 
 void PrintProducts(Product* orders, FILE* file)
 {
-    printf("---------------------------PRODUCTS---------------------------\n");
+    fprintf(file, "---------------------------PRODUCTS---------------------------\n");
     if (orders == NULL)
     {
         fprintf(file, "There are no product.\n");
@@ -77,12 +77,12 @@ void PrintProducts(Product* orders, FILE* file)
         PrintProduct(orders, file);
         orders = orders->next;
     }
-    printf("--------------------------------------------------------------\n");
+    fprintf(file, "--------------------------------------------------------------\n");
 }
 
 void PrintOrders(Order* orders, FILE* file)
 {
-    printf("--------------------------ORDERS---------------------------\n");
+    fprintf(file, "--------------------------ORDERS---------------------------\n");
     if (orders == NULL)
     {
         fprintf(file, "There are no order.\n");
@@ -92,10 +92,10 @@ void PrintOrders(Order* orders, FILE* file)
         PrintOrder(orders, file);
         orders = orders->next;
     }
-    printf("-----------------------------------------------------------\n");
+    fprintf(file, "-----------------------------------------------------------\n");
 }
 
-void ProdsInOrder(Connection* connect, FILE* file)
+void ProdsInOrder(Connection* connect)
 {
     printf("Please, enter order's id: ");
     int order_id;
@@ -116,12 +116,12 @@ void ProdsInOrder(Connection* connect, FILE* file)
         }
         connect = connect->next;
     }
-    fprintf(file, "\n"); 
+    printf("\n"); 
     if(!is_exist)printf("No maching orders\n");
     printf("---------------------------------------\n");
 }
 
-void OrdsWithProd(Connection* connect, FILE* file)
+void OrdsWithProd(Connection* connect)
 {
     printf("Please, enter product's name: ");
     char end = '\n';
@@ -142,7 +142,29 @@ void OrdsWithProd(Connection* connect, FILE* file)
         }
         connect = connect->next;
     }
-    fprintf(file, "\n"); 
+    printf("\n"); 
     if(!is_exist)printf("No maching products\n");
     printf("---------------------------------------\n");
+}
+
+void PrintConnects(Connection* connect, FILE* file)
+{
+    if(!connect)fprintf(file, "There are no connects.\n");
+    while(connect != NULL){
+        int od_id = connect->order->id;
+        char* str = connect->product->name;
+        fprintf(file, "Connection: Order #%d - %s\n", od_id, str);
+        connect = connect->next;
+    }
+}
+
+
+void SaveToTheFile(Product* prods, Order* orders, Connection* connects){
+    FILE* output = fopen("output.txt", "wt");
+    if(output){
+        PrintProducts(prods, output);
+        PrintOrders(orders, output);
+        PrintConnects(connects, output);
+    }
+    fclose(output);
 }
