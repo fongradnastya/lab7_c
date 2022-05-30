@@ -15,7 +15,7 @@ char* ConsoleInput(char* dev, FILE* file)
     while (!end)
     {
         chr = fgetc(file);
-        if(chr == *dev || chr == '\n')
+        if(chr == *dev || chr == '\n' || chr == EOF)
         {
             if(chr == '\n') *dev = '\n';
             end = 1;

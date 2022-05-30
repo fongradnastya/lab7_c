@@ -130,11 +130,11 @@ Order* OrderInput(FILE* file)
     printf("CUSTOMER_NAME, DELIV_PERIOD, ORDER_DATE(dd.mm.yyyy)\n");
     printf("For example: Matvey Nomow, 12, 14.05.2022\n");
     char dev = ',';
-    customer = ConsoleInput(&dev, stdin);
+    customer = ConsoleInput(&dev, file);
     int del_period = 0;
-    fscanf(stdin, " %d", &del_period);
+    fscanf(file, " %d", &del_period);
     dev = '\n';
-    char* date_str = ConsoleInput(&dev, stdin);
+    char* date_str = ConsoleInput(&dev, file);
     printf("%s", date_str);
     Date date = GetDate(date_str);
     if(!del_period) return NULL;

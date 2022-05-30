@@ -44,6 +44,7 @@ void PrintMenu()
     printf("8 to file input\n");
     printf("9 to load information into the file\n");
     printf("10 to print products in the order\n");
+    printf("11 to print orders with the product\n");
     printf("-1 to exit\n");
     printf("-2 to print the menu\n");
     printf("        ----------------\n");

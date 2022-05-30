@@ -61,7 +61,7 @@ Connection* ConnectInput(Product* products, Order* orders, FILE* file)
 {
     printf("Please, enter order's id: ");
     int order_id;
-    int res = scanf("%d, ", &order_id);
+    int res = fscanf(file, "%d, ", &order_id);
     if(res)
     {
         Order* order = FindOrder(orders, order_id);
