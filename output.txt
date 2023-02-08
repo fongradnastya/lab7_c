@@ -1,8 +1,18 @@
 ---------------------------PRODUCTS---------------------------
-Table, prise: 125.00 rub, weight: 1.75 kg
+2, prise: 4.00 rub, weight: 1.00 kg
+3, prise: 2.00 rub, weight: 4.00 kg
 --------------------------------------------------------------
 --------------------------ORDERS---------------------------
-id: #1, customer: Matvey Nomow, order date: 14.5.2022
-(will be delivered in 12 days)
+id: #1, customer: 4, order date: 11.11.2011
+(will be delivered in 5 days)
+id: #3, customer: 5, order date: 11.11.2011
+(will be delivered in 2 days)
+id: #4, customer: 6, order date: 11.11.2011
+(will be delivered in 10 days)
 -----------------------------------------------------------
-Connection: Order #1 - Table
+Connection: Order #1 - 1
+Connection: Order #3 - 1
+Connection: Order #3 - 2
+Connection: Order #4 - 1
+Connection: Order #4 - 2
+Connection: Order #4 - 3

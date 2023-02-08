@@ -126,7 +126,7 @@ void OrdsWithProd(Connection* connect)
 {
     printf("Please, enter product's name: ");
     char end = '\n';
-    char* name = ConsoleInput(&end, stdin);
+    char* name = StringInput(&end, stdin);
     setbuf(stdin, NULL);
     int is_exist = 0;
     if(!connect) {

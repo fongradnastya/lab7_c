@@ -5,7 +5,7 @@
 #include<ctype.h>
 #include"structure.h"
 
-char* ConsoleInput(char* dev, FILE* file)
+char* StringInput(char* dev, FILE* file)
 {
     char chr;
     char* str = (char*) malloc(sizeof(char));
@@ -34,7 +34,7 @@ char* ConsoleInput(char* dev, FILE* file)
 int GetInteger(int* val, FILE* file)
 {
     char dev = '\n';
-    char* str = ConsoleInput(&dev, file);
+    char* str = StringInput(&dev, file);
     for(int i = 0; i < strlen(str); i++)
     {
         if (!isdigit(str[i]) && !(i == 0 && str[0] == '-')) return 0;
